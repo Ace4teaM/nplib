@@ -1,0 +1,44 @@
+﻿Build started 20/07/2011 11:45:18.
+     1>Project "D:\Id-Informatik\dev\nplib\last\tools\3dsmax\mshexp\mshexp\mshexp.vcxproj" on node 2 (rebuild target(s)).
+     1>_PrepareForClean:
+         Deleting file "Debug\mshexp.lastbuildstate".
+       InitializeBuildStatus:
+         Creating "Debug\mshexp.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\..\..\include /I"C:\Program Files (x86)\Autodesk\Autodesk 3ds Max 2011 SDK\maxsdk\include" /ZI /nologo /W3 /WX- /Od /Oy- /D NP_DEBUG /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D MSHEXP_EXPORTS /D _WINDLL /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TC /analyze- /errorReport:prompt ..\..\..\..\src\wincsl.c
+         wincsl.c
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\..\..\include /I"C:\Program Files (x86)\Autodesk\Autodesk 3ds Max 2011 SDK\maxsdk\include" /ZI /nologo /W3 /WX- /Od /Oy- /D NP_DEBUG /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D MSHEXP_EXPORTS /D _WINDLL /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt dialog.cpp main.cpp
+         main.cpp
+         dialog.cpp
+         Generating Code...
+       ResourceCompile:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /l"0x0409" /nologo /fo"Debug\mshexp.res" mshexp.rc 
+       ManifestResourceCompile:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\mshexp.dle.embed.manifest.res" Debug\mshexp_manifest.rc 
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Id-Informatik\dev\nplib\last\tools\3dsmax\mshexp\\..\plugins\mshexp.dle" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files (x86)\Autodesk\Autodesk 3ds Max 2011 SDK\maxsdk\lib" /LIBPATH:..\..\..\..\lib kernel32.lib user32.lib gdi32.lib winspool.lib comctl32.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib core.lib maxutil.lib mesh.lib geom.lib nplib.lib /DEF:"mshexp.def" /MANIFEST /ManifestFile:"Debug\mshexp.dle.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\Id-Informatik\dev\nplib\last\tools\3dsmax\plugins\mshexp.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Id-Informatik\dev\nplib\last\tools\3dsmax\mshexp\\..\plugins\mshexp.lib" /MACHINE:X86 /DLL Debug\mshexp.res
+         Debug\mshexp.dle.embed.manifest.res
+         Debug\wincsl.obj
+         Debug\dialog.obj
+         Debug\main.obj
+            Creating library D:\Id-Informatik\dev\nplib\last\tools\3dsmax\mshexp\\..\plugins\mshexp.lib and object D:\Id-Informatik\dev\nplib\last\tools\3dsmax\mshexp\\..\plugins\mshexp.exp
+       Manifest:
+         Deleting file "Debug\mshexp.dle.embed.manifest".
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\mshexp.dle.embed.manifest" /manifest Debug\mshexp.dle.intermediate.manifest
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\mshexp.dle.embed.manifest.res" Debug\mshexp_manifest.rc 
+       LinkEmbedManifest:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Id-Informatik\dev\nplib\last\tools\3dsmax\mshexp\\..\plugins\mshexp.dle" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files (x86)\Autodesk\Autodesk 3ds Max 2011 SDK\maxsdk\lib" /LIBPATH:..\..\..\..\lib kernel32.lib user32.lib gdi32.lib winspool.lib comctl32.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib core.lib maxutil.lib mesh.lib geom.lib nplib.lib /DEF:"mshexp.def" /MANIFEST /ManifestFile:"Debug\mshexp.dle.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\Id-Informatik\dev\nplib\last\tools\3dsmax\plugins\mshexp.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Id-Informatik\dev\nplib\last\tools\3dsmax\mshexp\\..\plugins\mshexp.lib" /MACHINE:X86 /DLL Debug\mshexp.res
+         Debug\mshexp.dle.embed.manifest.res
+         Debug\wincsl.obj
+         Debug\dialog.obj
+         Debug\main.obj
+            Creating library D:\Id-Informatik\dev\nplib\last\tools\3dsmax\mshexp\\..\plugins\mshexp.lib and object D:\Id-Informatik\dev\nplib\last\tools\3dsmax\mshexp\\..\plugins\mshexp.exp
+         mshexp.vcxproj -> D:\Id-Informatik\dev\nplib\last\tools\3dsmax\mshexp\\..\plugins\mshexp.dle
+       FinalizeBuildStatus:
+         Deleting file "Debug\mshexp.unsuccessfulbuild".
+         Touching "Debug\mshexp.lastbuildstate".
+     1>Done Building Project "D:\Id-Informatik\dev\nplib\last\tools\3dsmax\mshexp\mshexp\mshexp.vcxproj" (rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:05.46
