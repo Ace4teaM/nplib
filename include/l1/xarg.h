@@ -20,8 +20,15 @@
 */
 #include <string.h>
 
+#define ARDUINO 
+
+#ifndef ARDUINO 
 #define XARG_START_OF_TEXT_CODE 0x02
 #define XARG_END_OF_TEXT_CODE 0x03
+#else
+#define XARG_START_OF_TEXT_CODE '='
+#define XARG_END_OF_TEXT_CODE ';'
+#endif
 
 extern "C" {
 
@@ -48,7 +55,7 @@ const char* xarg_decode_field(const char* in,char* title,char* msg);
  * @param out     Tableau de tableau de type char recupérant les données 
  * @param ofs     Taille d'un mot dans out
  * @param text     Corps du texte XARG
- * @return Prochain offset de 'out'
+ * @return Nombre d'items lu
 */
-void* xarg_decode(void* out, int ofs, const char* text);
+int xarg_decode(void* out, int ofs, const char* text);
 }

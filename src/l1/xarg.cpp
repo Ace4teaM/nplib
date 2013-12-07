@@ -61,16 +61,18 @@ const char* xarg_decode_field(const char* in,char* title,char* msg) {
 
 
 /* Convertie une chaine au format XARG en tableau associatif */
-void* xarg_decode(void* out, int ofs, const char* text) {//v4
+int xarg_decode(void* out, int ofs, const char* text) {//v4
 	char* _out=(char*)out;
 	int i=0;
+	int cnt=0;
 	while(*text != '\0'){
 
 		text = xarg_decode_field(text,&_out[i],&_out[i+ofs]);
 		i+=ofs*2;
+		cnt++;
 	}
-
-    return &_out[i+ofs];
+	return cnt;
+//    return &_out[i+ofs];
 }
 
 
@@ -113,8 +115,9 @@ TEST(XARG, xarg_decode) {
     char out[20][20];
     char text[]={'h','e','l','l','o',XARG_START_OF_TEXT_CODE,'w','o','r','l','d',XARG_END_OF_TEXT_CODE,'f','o','o',XARG_START_OF_TEXT_CODE,'b','a','r',XARG_END_OF_TEXT_CODE,0};
 
-	xarg_decode(out, 20, text);
-
+	int cnt = xarg_decode(out, 20, text);
+	
+    ASSERT_EQ(2,cnt) << "Should be equal";
     ASSERT_STREQ(out[0], "hello") << "Should be equal";
     ASSERT_STREQ(out[1], "world") << "Should be equal";
     ASSERT_STREQ(out[2], "foo") << "Should be equal";
