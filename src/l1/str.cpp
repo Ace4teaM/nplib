@@ -1,6 +1,92 @@
-#include <l1/str.h>
+/*
+    ---------------------------------------------------------------------------------------------------------------------------------------
+    (C)2013 Thomas AUGUEY <contact@aceteam.org>
+    ---------------------------------------------------------------------------------------------------------------------------------------
+    This file is part of WebFrameWork.
 
-//calcule la taille d'un texte
+    WebFrameWork is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    WebFrameWork is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with WebFrameWork.  If not, see <http://www.gnu.org/licenses/>.
+    ---------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+#include <include/l1/str.h>
+
+/**
+	@brief Rogne les caractères d'espacements et de saut de ligne (gauche et droite)
+	@param up Pointeur sur le début de la chaine
+	@param down Pointeur sur le début de la fin de chaine
+	@remarks La chaine n'est pas modifiée, seul les pointeurs sont ajustés
+*/
+void str_trim( char** up, char** down )
+{
+	*up = str_ltrim( *up, *down );
+	*down = str_rtrim( *up, *down );
+}
+
+/**
+	@brief Rogne les caractères d'espacements et de saut de ligne (gauche)
+	@param up Pointeur sur le début de la chaine
+	@param down Pointeur sur le début de la fin de chaine
+	@return Pointeur sur le premier caractère "lisible" de la chaine
+	@remarks La chaine n'est pas modifiée, seul le pointeur est ajusté
+*/
+char* str_ltrim( char* up, char* down )
+{
+	//gauche
+	while(*up!=0 && up<down)
+	{
+		switch(*up){
+			case '\n':
+			case '\r':
+			case ' ':
+			case '\t':
+				break;
+			default:
+				return up;
+		}
+		up++;
+	}
+	
+	return up;
+}
+
+/**
+	@brief Rogne les caractères d'espacements et de saut de ligne (droite)
+	@param up Pointeur sur le début de la chaine
+	@param down Pointeur sur le début de la fin de chaine
+	@return Pointeur sur le dernier caractère "lisible" de la chaine
+	@remarks La chaine n'est pas modifiée, seul le pointeur est ajusté
+*/
+char* str_rtrim( char* up, char* down )
+{
+	//droite
+	while(down>up)
+	{
+		switch(*(--down)){
+			case '\n':
+			case '\r':
+			case ' ':
+			case '\t':
+				break;
+			default:
+				return down+1;
+		}
+	}
+	
+	return down;
+}
+
+/*calcule la taille d'un texte
 char* strLength( char* up, char* down, size_t* psize )
 {
 	size_t size = 0;
@@ -17,22 +103,23 @@ char* strLength( char* up, char* down, size_t* psize )
 		return 0;
 
 	return up;
-}
+}*/
 
+/*
 char* strWriteUInteger( char* up, char* down, unsigned int data)
 {
 	char* self = (char*)up;
 	char* ptr;
 	int div,arrondie;
-	int size = 1; /* nombre de caracteres */
+	int size = 1; // nombre de caracteres
 	int tmp;
 	char c;
 
-	/* espace suffisant ? */
+	// espace suffisant ?
 	if(! (self < (char*)down))
 		return 0;
 
-	/* compte les chiffres */
+	// compte les chiffres
 	tmp = data;
 	while(tmp >= 10)
 	{
@@ -40,21 +127,21 @@ char* strWriteUInteger( char* up, char* down, unsigned int data)
 		size++;
 	}
 	
-	/* espace suffisant ? */
+	// espace suffisant ?
 	if(self+size >= (char*)down)
 		return 0;
 
-	/* convertie la valeur */
+	// convertie la valeur
 	ptr=self+size-1;
 	self+=size;
 	while(size && self<(char*)down)
 	{
-		/* decale d'une dixaine */
+		// decale d'une dixaine
 		div      = data / 10;
-		/* calcule la dixaine restante */
+		// calcule la dixaine restante
 		arrondie = div * 10;
 		c = '0' + (data - arrondie);
-		/* passe a la valeur suivante */
+		// passe a la valeur suivante
 		data     = div;
 
 		//*self++ = c;
@@ -62,29 +149,31 @@ char* strWriteUInteger( char* up, char* down, unsigned int data)
 		size--;
 	}
 	
-	/* espace suffisant ? */
+	// espace suffisant ?
 	if(self+1 >= (char*)down)
 		return 0;
 
 	return self;
 }
+*/
 
+/*
 const char* strReadUInteger( const char* up, const char* down, unsigned int* data)
 {
 	const char* self = up;
 	const char* ptr;
 	int mul = 1;
 	int value = 0;
-	int size = 1; /* nombre de caracteres */
+	int size = 1; // nombre de caracteres
 	
-	/* compte les chiffres */
+	// compte les chiffres
 	size = 0;
 	while((self[size] >= '0' && self[size] <= '9') && (self+size)<down)
 	{
 		size++;
 	}
 
-	/* convertie la valeur */
+	// convertie la valeur
 	ptr=self+size-1;
 	self+=size;
 	while(size)
@@ -98,33 +187,34 @@ const char* strReadUInteger( const char* up, const char* down, unsigned int* dat
 //		printf("\n");
 	}
 	
-	/* copie la valeur */
+	// copie la valeur
 	*data = value;
 
 	return self;
-}
+}*/
 
+/*
 char* strWriteInteger( char* up, char* down, int data)
 {
 	char* self = (char*)up;
 	char* ptr;
 	int div,arrondie;
-	int size = 1; /* nombre de caracteres */
+	int size = 1; // nombre de caracteres
 	int tmp;
 	char c;
 
-	/* espace suffisant ? */
+	// espace suffisant ?
 	if(! (self < (char*)down))
 		return 0;
 
-	/* nombre negatif ? */
+	// nombre negatif ?
 	if(data < 0)
 	{
 		*self++ = '-';
 		data = -data;
 	}
 
-	/* compte les chiffres */
+	// compte les chiffres
 	tmp = data;
 	while(tmp >= 10)
 	{
@@ -132,57 +222,59 @@ char* strWriteInteger( char* up, char* down, int data)
 		size++;
 	}
 	
-	/* espace suffisant ? */
+	// espace suffisant ?
 	if(self+size >= (char*)down)
 		return 0;
 
-	/* convertie la valeur */
+	// convertie la valeur
 	ptr=self+size-1;
 	self+=size;
 	while(size && self<(char*)down)
 	{
-		/* decale d'une dixaine */
+		// decale d'une dixaine
 		div      = data / 10;
-		/* calcule la dixaine restante */
+		// calcule la dixaine restante
 		arrondie = div * 10;
 		c = '0' + (data - arrondie);
-		/* passe a la valeur suivante */
+		// passe a la valeur suivante
 		data     = div;
 
 		//*self++ = c;
 		*ptr-- = c;
 		size--;
 	}
-	
-	/* espace suffisant ? */
+
+	// espace suffisant ?
 	if(self+1 >= (char*)down)
 		return 0;
 
 	//*self++ = ';';
 
 	return self;
-}
+}*/
 
+
+/*
 const char* strReadInteger( const char* up, const char* down, int* data)
 {
 	const char* self = up;
 	const char* ptr;
 	int mul = 1;
 	int value = 0;
-	int size = 1; /* nombre de caracteres */
+	int size = 1; // nombre de caracteres
 	
-	/* negative ? */
+	// negative ?
 	if(*self == '-')
 		self++;
 	
-	/* compte les chiffres */
+	// compte les chiffres
 	size = 0;
 	while((self[size] >= '0' && self[size] <= '9') && (self+size)<down)
 	{
 		size++;
 	}
 
-	/* convertie la valeur */
+	// convertie la valeur
 	ptr=self+size-1;
 	self+=size;
 	while(size)
@@ -196,19 +288,19 @@ const char* strReadInteger( const char* up, const char* down, int* data)
 //		printf("\n");
 	}
 	
-	/* negative ?
-	if((*self) != ';')
-		return 0; */
+	// negative ?
+	//if((*self) != ';')
+	//	return 0;
 
-	/* negative ? */
+	// negative ?
 	if(*up == '-')
 		value = -value;
 
-	/* copie la valeur */
+	// copie la valeur
 	*data = value;
 
 	return self;
-}
+}*/
 
 /*
 	strCopy
@@ -216,7 +308,7 @@ const char* strReadInteger( const char* up, const char* down, int* data)
 
 	Remaques:
 		strCopy ne copie pas le caractere de terminaison '\0'
-*/
+
 char* strCopy( char* up, char* down, const char* str )
 {
 	while(up<down && *str!=0)
@@ -224,7 +316,7 @@ char* strCopy( char* up, char* down, const char* str )
 	if(*str!=0)
 		return 0;
 	return up;
-}
+}*/
 
 /*
 	strParse
@@ -245,7 +337,7 @@ char* strCopy( char* up, char* down, const char* str )
 		%r = char*                bytes
 		%a = char*                ascii string zero
 		%p = void*                pointeur
-*/
+
 char* strParse(char* begin,char* end,const char* txt,...)
 {
 	va_list list;
@@ -270,46 +362,46 @@ char* strParse(char* begin,char* end,const char* txt,...)
 
 			switch(c)
 			{
-				/* string */
+				// string
 				case 'a':
 					avalue = va_arg(list, char*);
 					begin = strCopy(begin,end,avalue);
 					break;
-				/* unsigned integer */
+				// unsigned integer
 				case 'd':
 					uivalue = va_arg(list, uint);
 					begin = strWriteUInteger(begin,end,uivalue);
 					break;
-				/* integer */
+				// integer
 				case 'i':
 					ivalue = va_arg(list, int);
 					begin = strWriteInteger(begin,end,ivalue);
 					break;
-				/* unsigned short */
+				// unsigned short
 				case 'w':
 					usvalue = va_arg(list, uint);
 					begin = strWriteUInteger(begin,end,(uint)usvalue);
 					break;
-				/* short */
+				// short
 				case 's':
 					svalue = va_arg(list, short);
 					begin = strWriteInteger(begin,end,(int)svalue);
 					break;
-				/* unsigned char */
+				// unsigned char
 				case 'b':
 					ucvalue = va_arg(list, uchar);
 					begin = strWriteUInteger(begin,end,(uint)ucvalue);
 					break;
-				/* char */
+				// char
 				case 'c':
 					cvalue = va_arg(list, char);
 					begin = strWriteInteger(begin,end,(int)cvalue);
 					break;
-				/* bytes */
+				// bytes
 				case 'r':
 					begin = strCopy(begin,end,"[!b]");
 					break;
-				/* pointeur */
+				// pointeur
 				case 'p':
 					begin = strCopy(begin,end,"[!p]");
 					break;
@@ -334,3 +426,34 @@ char* strParse(char* begin,char* end,const char* txt,...)
 
 	return begin;
 }
+*/
+
+/*
+  tests réalisés avec la librairie GoogleTest
+*/
+#ifdef GTEST
+TEST(str, str_ltrim) {
+    char value[] = " \n\r\tHello World";
+    char* ofs = str_ltrim(value,value+15);
+    ASSERT_STREQ("Hello World", ofs) << "Should be equal";
+}
+
+TEST(str, str_rtrim) {
+    char value[] = "Hello World \n\r\t";
+    *str_rtrim(value,value+15) = '\0'; // tronque definitivement
+    ASSERT_STREQ("Hello World", value) << "Should be equal";
+}
+
+TEST(str, str_trim) {
+	size_t s;
+    char buf[20];
+    char value[] = " \n\r\tHello World \n\r\t";
+    char* begin=value;
+	char* end=value+19;
+    str_trim(&begin,&end);
+	s = (size_t)(end-begin);
+	memcpy(buf,begin,s);
+	buf[s]=0;
+    ASSERT_STREQ("Hello World", buf) << "Should be equal";
+}
+#endif

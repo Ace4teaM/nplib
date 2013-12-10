@@ -18,10 +18,18 @@
     along with WebFrameWork.  If not, see <http://www.gnu.org/licenses/>.
     ---------------------------------------------------------------------------------------------------------------------------------------
 */
+#ifndef _NP_L1_RESULT
+#define _NP_L1_RESULT
+
+
 #ifdef ARDUINO
 #include <arduino.h>
 #endif
 #include <string.h>
+
+#ifdef GTEST
+#include <include\gtest\gtest.h>
+#endif
 
 extern "C" {
 
@@ -53,3 +61,5 @@ const char* get_result_code();
 */
 const char* get_result();
 }
+
+#endif

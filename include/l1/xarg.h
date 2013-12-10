@@ -18,7 +18,14 @@
     along with WebFrameWork.  If not, see <http://www.gnu.org/licenses/>.
     ---------------------------------------------------------------------------------------------------------------------------------------
 */
+#ifndef _NP_L1_XARG
+#define _NP_L1_XARG
+
 #include <string.h>
+
+#ifdef GTEST
+#include <include\gtest\gtest.h>
+#endif
 
 #define ARDUINO 
 
@@ -40,6 +47,7 @@ extern "C" {
  * @return chaine au format XARG
  */
 char* xarg_encode_field(char* out,const char* title,const char* msg);
+char* _xarg_encode_field(char* up, char* down,const char* title,const char* msg);
 
 /**
  * @brief Encode un champ dans le format XARG
@@ -59,3 +67,6 @@ const char* xarg_decode_field(const char* in,char* title,char* msg);
 */
 int xarg_decode(void* out, int ofs, const char* text);
 }
+
+
+#endif

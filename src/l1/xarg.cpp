@@ -19,7 +19,7 @@
     ---------------------------------------------------------------------------------------------------------------------------------------
 */
 
-#include "xarg.h"
+#include <include\l1\xarg.h>
 
 /* Encode un champ dans le format XARG */
 char* xarg_encode_field(char* out,const char* title,const char* msg) {
@@ -36,6 +36,42 @@ char* xarg_encode_field(char* out,const char* title,const char* msg) {
 	*out++ = XARG_END_OF_TEXT_CODE;
 	*out = 0;
 	return out;
+}
+
+/* Encode un champ dans le format XARG */
+char* _xarg_encode_field(char* up, char* down,const char* title,const char* msg) {
+	size_t free_size  = (size_t)(down-up);
+	size_t total_size = strlen(title) + strlen(msg) + 2 + 1;
+	size_t i;
+	
+	//invalid size ?
+	if(free_size < total_size)
+		return 0;
+
+	// copie le titre
+	i=0;
+	do{
+		if(title[i] != XARG_START_OF_TEXT_CODE || title[i] != XARG_END_OF_TEXT_CODE)
+			*up++ = title[i];
+	}while(title[++i] != '\0');
+
+	// separateur
+	*up++ = XARG_START_OF_TEXT_CODE;
+
+	// copie le message
+	i=0;
+	do{
+		if(msg[i] != XARG_START_OF_TEXT_CODE || msg[i] != XARG_END_OF_TEXT_CODE)
+			*up++ = msg[i];
+	}while(msg[++i] != '\0');
+
+	// separateur
+	*up++ = XARG_END_OF_TEXT_CODE;
+
+	//fin de chaine
+	*up = 0;
+
+	return up;
 }
 
 /* Encode un champ dans le format XARG */
@@ -76,6 +112,7 @@ int xarg_decode(void* out, int ofs, const char* text) {//v4
 }
 
 
+
 /*
   tests réalisés avec la librairie GoogleTest
 */
@@ -86,7 +123,7 @@ TEST(XARG, xarg_encode_field) {
 
     xarg_encode_field(value,"hello","world");
 
-    ASSERT_STREQ(value, expected) << "Should be equal";
+    ASSERT_STREQ(expected, value) << "Should be equal";
 }
 
 TEST(XARG, xarg_encode_field2) {
@@ -97,7 +134,21 @@ TEST(XARG, xarg_encode_field2) {
     pvalue = xarg_encode_field(pvalue,"hello","world");
     pvalue = xarg_encode_field(pvalue,"foo","bar");
 
-    ASSERT_STREQ(value, text) << "Should be equal";
+    ASSERT_STREQ(text, value) << "Should be equal";
+}
+
+
+TEST(XARG, _xarg_encode_field) {
+    char value[200];
+    char* pup = value;
+    char* pdown = value+sizeof(value);
+    char text[]={'h','e','l','l','o',XARG_START_OF_TEXT_CODE,'w','o','r','l','d',XARG_END_OF_TEXT_CODE,'f','o','o',XARG_START_OF_TEXT_CODE,'b','a','r',XARG_END_OF_TEXT_CODE,0};
+	
+	memset(value,0,sizeof(value));
+    pup = _xarg_encode_field(pup,pdown,"hello","world");
+    pup = _xarg_encode_field(pup,pdown,"foo","bar");
+
+    ASSERT_STREQ(text,value) << "Should be equal";
 }
 
 TEST(XARG, xarg_decode_field) {
@@ -107,8 +158,8 @@ TEST(XARG, xarg_decode_field) {
 
 	xarg_decode_field(value,title,msg);
 
-    ASSERT_STREQ(title, "hello") << "Should be equal";
-    ASSERT_STREQ(msg, "world") << "Should be equal";
+    ASSERT_STREQ("hello", title) << "Should be equal";
+    ASSERT_STREQ("world", msg) << "Should be equal";
 }
 
 TEST(XARG, xarg_decode) {
@@ -118,10 +169,10 @@ TEST(XARG, xarg_decode) {
 	int cnt = xarg_decode(out, 20, text);
 	
     ASSERT_EQ(2,cnt) << "Should be equal";
-    ASSERT_STREQ(out[0], "hello") << "Should be equal";
-    ASSERT_STREQ(out[1], "world") << "Should be equal";
-    ASSERT_STREQ(out[2], "foo") << "Should be equal";
-    ASSERT_STREQ(out[3], "bar") << "Should be equal";
+    ASSERT_STREQ("hello", out[0]) << "Should be equal";
+    ASSERT_STREQ("world", out[1]) << "Should be equal";
+    ASSERT_STREQ("foo", out[2]) << "Should be equal";
+    ASSERT_STREQ("bar", out[3]) << "Should be equal";
 }
 
 #endif
