@@ -4,10 +4,10 @@
 #ifndef _NP_L1_LIST
 #define _NP_L1_LIST
 
-#include <np.h>
+#include <stddef.h>
 
-typedef struct{
-	LIST_ITEM* next;
+typedef struct _LIST_ITEM{
+	_LIST_ITEM* next;
 }LIST_ITEM;
 
 typedef struct{

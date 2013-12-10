@@ -11,13 +11,7 @@
 		C   1100        D   1101
 		E   1011        F   1111
 */
-#include <l1/t_bcd.h>
-
-typedef struct _T_BCN
-{
-	unsigned char a : 4;
-	unsigned char b : 4;
-}T_BCN;
+#include "t_bcd.h"
 
 void* npMakeBCD( void* up, void* down, char* ascii, size_t size)
 {
@@ -47,8 +41,10 @@ void* npMakeBCD( void* up, void* down, char* ascii, size_t size)
 
 void* npBCNAdd( void* up, void* down, char* dst, char* a, char* b)
 {
+	return 0;
 }
 
 void* npBCNToInt( void* up, void* down, char* dst, char* a, char* b)
 {
+	return 0;
 }

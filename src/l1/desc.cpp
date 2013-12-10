@@ -1,8 +1,4 @@
-#include <l1/desc.h>
-#include <l1/str.h>
-#include <math.h>
-#include <float.h>
-#include <string.h>
+#include "desc.h"
 
 void* descMake(void* begin, void* end, ...)
 {
@@ -155,17 +151,17 @@ void* descReadRaw( void* up, void* down, unsigned char* out, size_t size )
 //taille en bytes
 void* descWriteSize(void* up, void* down,size_t size/*,size_t* bytes_count*/)
 {
-	unsigned char* bytes = (char*)up;
+	unsigned char* bytes = (unsigned char*)up;
 
 	// ecrit les bytes
-	while(size>=255 &&  (bytes<(char*)down))
+	while(size>=255 &&  (bytes<(unsigned char*)down))
 	{
 		*bytes++ = 0xff;
 		size -= 0xff;
 	}
 	
 	// ajoute le reste
-	if(bytes>=(char*)down)
+	if(bytes>=(unsigned char*)down)
 		return 0;
 	*bytes++ = (unsigned char)size;
 
@@ -175,18 +171,18 @@ void* descWriteSize(void* up, void* down,size_t size/*,size_t* bytes_count*/)
 //bytes en taille
 void* descReadSize(void* up, void* down,size_t* psize)
 {
-	unsigned char* bytes = (char*)up;
+	unsigned char* bytes = (unsigned char*)up;
 	size_t size = 0;
 	
 	// additionne les bytes
-	while((bytes<(char*)down) && ((*bytes) == 0xff))
+	while((bytes<(unsigned char*)down) && ((*bytes) == 0xff))
 	{
 		bytes++;
 		size+=0xff;
 	}
 	
 	// ajoute le reste
-	if(bytes>=(char*)down)
+	if(bytes>=(unsigned char*)down)
 		return 0;
 	size += (*bytes);
 
@@ -455,9 +451,9 @@ void* descNumberToFloat( void* up, void* down, float* pvalue)
 	*self++;//fin de nombre
 	
 	if(high<0)
-		*pvalue = (float)((float)high-((float)low/(float)pow(10,precision)));
+		*pvalue = (float)((float)high-((float)low/(float)pow(10.0f,precision)));
 	else
-		*pvalue = (float)((float)high+((float)low/(float)pow(10,precision)));
+		*pvalue = (float)((float)high+((float)low/(float)pow(10.0f,precision)));
 
 	/*printf("descNumberToFloat=%d.%d=>%d (%f)\n",high,low,precision,*pvalue);*/
 

@@ -9,6 +9,7 @@
 #endif
 #include <stdio.h>
 #include <string.h>
+#include <limits.h>
 
 // read formats
 #define texts_ischar(c) (((c)>0x1f && (c)!=0x20 && (c)<0x7f) ? 1 : 0)

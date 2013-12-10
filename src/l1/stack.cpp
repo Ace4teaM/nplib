@@ -3,8 +3,7 @@
 	Simple pile de donnees lineaire LastIn-FirstOut
 */
 
-#include <l1/stack.h>
-#include <l1/memory.h>
+#include "stack.h"
 
 /*
 	Initialise une pile
@@ -45,7 +44,7 @@ void* npMakeStack(void* up,void* down,char* stack,size_t size)
 	self->up   = stack;
 	self->down = stack + size;
 
-	NP_LOG("%d bytes (%p:%p) %d",size,self->up,self->down,(size_t)(self->down-self->up));
+//	NP_LOG("%d bytes (%p:%p) %d",size,self->up,self->down,(size_t)(self->down-self->up));
 
 	return up;
 }
@@ -61,25 +60,25 @@ void npStackReset(NP_STACK* stack)
 /*
 	Taille de la pile
 */
-uint npStackSize(NP_STACK* stack)
+unsigned int npStackSize(NP_STACK* stack)
 {
-	return (uint)(stack->down - stack->up);
+	return (unsigned int)(stack->down - stack->up);
 }
 
 /*
 	Taille de l'espace libre
 */
-uint npStackFreeSize(NP_STACK* stack)
+unsigned int npStackFreeSize(NP_STACK* stack)
 {
-	return (uint)(stack->down - stack->pos);
+	return (unsigned int)(stack->down - stack->pos);
 }
 
 /*
 	Taille de l'espace occupe
 */
-uint npStackUsedSize(NP_STACK* stack)
+unsigned int npStackUsedSize(NP_STACK* stack)
 {
-	return (uint)(stack->pos-stack->up);
+	return (unsigned int)(stack->pos-stack->up);
 }
 
 /*
@@ -96,7 +95,7 @@ void* npStackReserve(NP_STACK* stack,size_t size)
 	/* deplace le curseur */
 	stack->pos += size;
 	
-	NP_LOG("%d bytes\n",size);
+//	NP_LOG("%d bytes\n",size);
 
 	return ptr;
 }
@@ -121,7 +120,7 @@ void* npStackPush(NP_STACK* stack,const void* _data,size_t size)
 	while(size--)
 		*stack->pos++ = *data++;
 	
-	NP_LOG("%d bytes\n",size);
+//	NP_LOG("%d bytes\n",size);
 
 	return base_ptr;
 }

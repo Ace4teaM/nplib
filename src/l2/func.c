@@ -1,4 +1,4 @@
-#include <l2/func.h>
+#include "func.h"
 
 int npAdd(int h1,int h2)
 {

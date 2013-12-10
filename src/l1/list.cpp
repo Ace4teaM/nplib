@@ -1,4 +1,4 @@
-#include <l1/desc.h>
+#include "list.h"
 
 //calcule la taille d'un texte
 void* strLength( char* up, char* down, size_t* psize )

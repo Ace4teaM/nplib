@@ -1,5 +1,5 @@
-#include <l1/memory.h>
-#include <l1/chunkstack.h>
+#include "memory.h"
+#include "chunkstack.h"
 
 /*
 	ChunkStack Lib
@@ -14,7 +14,7 @@
 void* npMakeChunkStack(void* up,void* down, char* stack_ptr,unsigned int chunk_size,unsigned int chunk_count)
 {
 	NP_CHUNK_STACK* self;
-	uint stack_size = chunk_size*chunk_count;
+	unsigned int stack_size = chunk_size*chunk_count;
 
 	/* initialise l'en-tete */
 	self = (NP_CHUNK_STACK*)up;

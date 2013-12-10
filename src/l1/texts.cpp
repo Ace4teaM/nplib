@@ -1,4 +1,4 @@
-#include <l1/texts.h>
+#include "texts.h"
 
 /*
 	print formats
@@ -96,7 +96,7 @@ size_t texts_readvalue(char* value,const char* end)
 	return 0;
 }
 
-size_t texts_readbytevalue(unsigned char* value,const unsigned char* end)
+size_t texts_readbytevalue(char* value,const char* end)
 {
 	int c=texts_readwhitespace();
 	size_t size=0;

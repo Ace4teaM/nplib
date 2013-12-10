@@ -19,7 +19,7 @@
     ---------------------------------------------------------------------------------------------------------------------------------------
 */
 
-#include <include/l1/str.h>
+#include "str.h"
 
 /**
 	@brief Rogne les caractères d'espacements et de saut de ligne (gauche et droite)

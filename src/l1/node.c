@@ -1,4 +1,4 @@
-#include <l1/node.h>
+#include "node.h"
 
 void* nodeMake(void* begin, void* end, int count, void* ref, ...)
 {

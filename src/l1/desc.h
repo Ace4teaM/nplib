@@ -4,8 +4,13 @@
 #ifndef _NP_L1_DESC
 #define _NP_L1_DESC
 
+#include <string.h>
+#include <math.h>
+#include <float.h>
 #include <stddef.h>
 #include <stdarg.h>
+
+#include "str.h"
 
 /*
 	Endianness

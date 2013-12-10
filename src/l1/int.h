@@ -1,7 +1,8 @@
 #ifndef _NP_L1_INT
 #define _NP_L1_INT
 
-#include <np.h>
+#include <stddef.h>
+#include <limits.h>
 
 /* Endianness */
 #define NP_LITTLE_ENDIAN 0

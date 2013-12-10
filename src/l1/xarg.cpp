@@ -19,7 +19,7 @@
     ---------------------------------------------------------------------------------------------------------------------------------------
 */
 
-#include <include\l1\xarg.h>
+#include "xarg.h"
 
 /* Encode un champ dans le format XARG */
 char* xarg_encode_field(char* out,const char* title,const char* msg) {

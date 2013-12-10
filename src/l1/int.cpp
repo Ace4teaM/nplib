@@ -1,4 +1,4 @@
-#include <l1/int.h>
+#include "int.h"
 
 void* npMakeInt( void* up, void* down, char* data, size_t size)
 {

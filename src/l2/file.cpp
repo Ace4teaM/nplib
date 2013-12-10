@@ -1,4 +1,4 @@
-#include <l1/file.h>
+#include "file.h"
 
 int fileWrite(const char* filename,const char* mode,char* begin,char* end)
 {
@@ -10,7 +10,7 @@ int fileWrite(const char* filename,const char* mode,char* begin,char* end)
 	fp = fopen(filename,mode);
 	if(fp==0)
 	{
-		NP_LOG("can't open file %a in '%a' mode",filename,mode);
+//		NP_LOG("can't open file %a in '%a' mode",filename,mode);
 		return 0;
 	}
 
@@ -32,7 +32,7 @@ int fileRead(const char* filename,const char* mode,char* begin,char* end)
 	fp = fopen(filename,mode);
 	if(fp==0)
 	{
-		NP_LOG("can't open file %a in '%a' mode",filename,mode);
+//		NP_LOG("can't open file %a in '%a' mode",filename,mode);
 		return 0;
 	}
 
@@ -48,7 +48,7 @@ int fileCat(FILE* fp,char* begin,char* end)
 {
 	if(fp==0)
 	{
-		NP_LOG("invalid file pointer");
+//		NP_LOG("invalid file pointer");
 		return 0;
 	}
 
