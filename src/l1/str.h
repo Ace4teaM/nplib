@@ -15,6 +15,7 @@
 char* str_ltrim( char* up, char* down );
 char* str_rtrim( char* up, char* down );
 void str_trim( char** up, char** down );
+void str_trimz( char** up, char* down  );
 /*
 char* strLength( char* up, char* down, size_t* psize );
 char* strCopy( char* up, char* down, const char* str );

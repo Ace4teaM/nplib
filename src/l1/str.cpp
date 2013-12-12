@@ -27,6 +27,19 @@
 	@param down Pointeur sur le début de la fin de chaine
 	@remarks La chaine n'est pas modifiée, seul les pointeurs sont ajustés
 */
+void str_trimz( char** up, char* down  )
+{
+	*up = str_ltrim( *up, down );
+	down = str_rtrim( *up, down );
+	*down = 0;
+}
+
+/**
+	@brief Rogne les caractères d'espacements et de saut de ligne (gauche et droite)
+	@param up Pointeur sur le début de la chaine
+	@param down Pointeur sur le début de la fin de chaine
+	@remarks La chaine n'est pas modifiée, seul les pointeurs sont ajustés
+*/
 void str_trim( char** up, char** down )
 {
 	*up = str_ltrim( *up, *down );
@@ -144,7 +157,7 @@ char* strWriteUInteger( char* up, char* down, unsigned int data)
 		// passe a la valeur suivante
 		data     = div;
 
-		//*self++ = c;
+//		*self++ = c;
 		*ptr-- = c;
 		size--;
 	}
@@ -239,7 +252,7 @@ char* strWriteInteger( char* up, char* down, int data)
 		// passe a la valeur suivante
 		data     = div;
 
-		//*self++ = c;
+//		*self++ = c;
 		*ptr-- = c;
 		size--;
 	}
@@ -248,7 +261,7 @@ char* strWriteInteger( char* up, char* down, int data)
 	if(self+1 >= (char*)down)
 		return 0;
 
-	//*self++ = ';';
+//	*self++ = ';';
 
 	return self;
 }*/
