@@ -22,17 +22,16 @@
 #include "cxarg.h"
 
 XARG::XARG(const char* str, bool trim){
-	size_t str_size = strlen(str);
 	//parse les champs
 	char name[200];
 	char value[200];
 	while(*str != '\0'){
 		str = xarg_decode_field(str,name,value);
 		if(trim){
-            char* begin=name;
-            char* end=name+strlen(name);
-            str_trim(&begin,&end);
-            *end=0;
+			char* begin=name;
+			char* end=name+strlen(name);
+			str_trim(&begin,&end);
+			*end=0;
 		}
 		this->insert( std::pair<std::string,std::string>(std::string(name),std::string(value)) );
 	}

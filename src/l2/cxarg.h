@@ -24,8 +24,6 @@
 
 #include "../l1/xarg.h"
 #include "../l1/str.h"
-#include <stdio.h>
-#include <iostream>
 #include <map>
 
 /**
