@@ -14,7 +14,7 @@ typedef struct _RIFF_HEADER{
 	char format[4];
 }RIFF_HEADER;
 
-char* riff_read(char* up, char* down,RIFF* header);
-char* riff_write(char* up, char* down,const RIFF* header);
+bool riff_read(PTR* mem,RIFF* header);
+bool riff_write(PTR* mem,const RIFF* header);
 
 #endif

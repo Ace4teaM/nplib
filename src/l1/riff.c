@@ -6,11 +6,10 @@
 	@param header Output header structure
 	@return true
 */
-char* riff_read(char* up, char* down,RIFF* header){
-	up = bread(up,down,header->id,sizeof(header->id));
-	header->size = btoi(up);
-	up+=sizeof(int);
-	return up;
+bool riff_read(PTR* mem,RIFF* header){
+	bread(mem,header->id,sizeof(header->id));
+	header->size = btoi(mem);
+	return true;
 }
 
 /**
@@ -19,11 +18,10 @@ char* riff_read(char* up, char* down,RIFF* header){
 	@param header Input header structure
 	@return true
 */
-char* riff_write(char* up, char* down,const RIFF* header){
-	up = bwrite(up,down,header->id,sizeof(header->id));
-	itob(up,header->size);
-	up+=sizeof(int);
-	return up;
+bool riff_write(PTR* mem,const RIFF* header){
+	bwrite(mem,header->id,sizeof(header->id));
+	itob(mem,header->size);
+	return true;
 }
 
 /*
@@ -35,18 +33,19 @@ TEST(RIFF, read_write) {
 	RIFF_HEADER head = {{'F','M','T',' '}};
 	RIFF r_riff;
 	RIFF_HEADER r_head;
-    char buf[200],*up,*down;
-	down=buf+sizeof(buf);
+
+	//buffer
+    char buf[200];
+	PTR mem = {buf,buf+sizeof(buf),buf};
 
 	//ecrit
-	up=buf;
-	up = riff_write(up,down,&riff);
-	up = bwrite(up,down,&head,sizeof(head));
+	riff_write(&mem,&riff);
+	bwrite(&mem,&head,sizeof(head));
 
 	//lit
-	up=buf;
-	up = riff_read(up,down,&r_riff);
-	up = bread(up,down,&r_head,sizeof(r_head));
+	brewind(&mem);
+	riff_read(&mem,&r_riff);
+	bread(&mem,&r_head,sizeof(r_head));
 
 	if(memcmp(&riff,&r_riff,sizeof(riff)) != 0)
 		FAIL() << "riff";

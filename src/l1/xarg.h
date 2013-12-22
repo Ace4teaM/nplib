@@ -21,20 +21,17 @@
 #ifndef _NP_L1_XARG
 #define _NP_L1_XARG
 
+#include "memory.h"
 #include <string.h>
 
-#ifdef GTEST
-#include <include\gtest\gtest.h>
-#endif
-
-#define ARDUINO 
+//#define ARDUINO 
 
 #ifndef ARDUINO 
 #define XARG_START_OF_TEXT_CODE 0x02
 #define XARG_END_OF_TEXT_CODE 0x03
 #else
 #define XARG_START_OF_TEXT_CODE '='
-#define XARG_END_OF_TEXT_CODE ';'
+#define XARG_END_OF_TEXT_CODE '\n'
 #endif
 
 extern "C" {
@@ -42,21 +39,22 @@ extern "C" {
 /**
  * @brief Encode un champ dans le format XARG
  *
- * @param string $title Titre du paramétre (Format identifier recommandé)
- * @param string $title Valeur du paramétre
+ * @param mem Pointeur sur le tampon mémoire
+ * @param title Titre du paramétre (Format identifier recommandé)
+ * @param msg Valeur du paramétre
  * @return chaine au format XARG
  */
-char* xarg_encode_field(char* out,const char* title,const char* msg);
-char* _xarg_encode_field(char* up, char* down,const char* title,const char* msg);
+bool xarg_encode_field(PTR* mem,const char* title,const char* msg);
 
 /**
  * @brief Encode un champ dans le format XARG
  *
+ * @param mem Pointeur sur le tampon mémoire
  * @param string $title Titre du paramétre (Format identifier recommandé)
  * @param string $title Valeur du paramétre
  * @return chaine au format XARG
  */
-const char* xarg_decode_field(const char* in,char* title,char* msg);
+bool xarg_decode_field(PTR* mem,char* title,char* msg);
 
 /**
  * @brief Convertie une chaine au format XARG en tableau associatif
@@ -65,7 +63,7 @@ const char* xarg_decode_field(const char* in,char* title,char* msg);
  * @param text     Corps du texte XARG
  * @return Nombre d'items lu
 */
-int xarg_decode(void* out, int ofs, const char* text);
+int xarg_decode(PTR* out, int ofs, const char* text);
 }
 
 

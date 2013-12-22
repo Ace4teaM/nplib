@@ -1,6 +1,8 @@
 #ifndef _ENDIAN_H
 #define _ENDIAN_H
 
+#include "memory.h"
+
 /* Endianness */
 #define LITTLE_ENDIAN 0
 #define BIG_ENDIAN    1
@@ -16,17 +18,17 @@ static const short ENDIAN_TEST = 1;
 #else
 #define IS_SPEC_ENDIAN
 #endif
-/*
-// file bytes to type
-int ftoi(FILE* fp);
-short ftos(FILE* fp);
-long ftol(FILE* fp);
 
-// type to file bytes 
-FILE* ftoi(FILE* fp, int val);
-FILE* ftos(FILE* fp, short val);
-FILE* ftol(FILE* fp, long val);
-*/
+// bytes to type
+int btoi(PTR* dat);
+short btos(PTR* dat);
+long btol(PTR* dat);
+
+// type to bytes
+bool itob(PTR* dat, int val);
+bool stob(PTR* dat, short val);
+bool ltob(PTR* dat, long val);
+
 // bytes to type
 int btoi(const char* dat);
 short btos(const char* dat);

@@ -12,10 +12,11 @@
 #include <include\gtest\gtest.h>
 #endif
 
-char* str_ltrim( char* up, char* down );
-char* str_rtrim( char* up, char* down );
-void str_trim( char** up, char** down );
-void str_trimz( char** up, char* down  );
+char* str_ltrim( PTR* ptr );
+char* str_rtrim( PTR* ptr );
+void str_trim( PTR* ptr );
+void str_trimz( PTR* ptr  );
+char* str_trimz( char* up  );
 /*
 char* strLength( char* up, char* down, size_t* psize );
 char* strCopy( char* up, char* down, const char* str );

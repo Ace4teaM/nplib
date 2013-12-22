@@ -27,11 +27,11 @@
 	@param down Pointeur sur le début de la fin de chaine
 	@remarks La chaine n'est pas modifiée, seul les pointeurs sont ajustés
 */
-void str_trimz( char** up, char* down  )
+char* str_trimz( char* up  )
 {
-	*up = str_ltrim( *up, down );
-	down = str_rtrim( *up, down );
-	*down = 0;
+	PTR ptr = {up,up+strlen(up),up};
+	str_trimz( &ptr  );
+	return ptr.up;
 }
 
 /**
@@ -40,10 +40,22 @@ void str_trimz( char** up, char* down  )
 	@param down Pointeur sur le début de la fin de chaine
 	@remarks La chaine n'est pas modifiée, seul les pointeurs sont ajustés
 */
-void str_trim( char** up, char** down )
+void str_trimz( PTR* ptr  )
 {
-	*up = str_ltrim( *up, *down );
-	*down = str_rtrim( *up, *down );
+	str_ltrim( ptr );
+	*str_rtrim( ptr )='\0';
+}
+
+/**
+	@brief Rogne les caractères d'espacements et de saut de ligne (gauche et droite)
+	@param up Pointeur sur le début de la chaine
+	@param down Pointeur sur le début de la fin de chaine
+	@remarks La chaine n'est pas modifiée, seul les pointeurs sont ajustés
+*/
+void str_trim( PTR* ptr )
+{
+	str_ltrim( ptr );
+	str_rtrim( ptr );
 }
 
 /**
@@ -53,24 +65,25 @@ void str_trim( char** up, char** down )
 	@return Pointeur sur le premier caractère "lisible" de la chaine
 	@remarks La chaine n'est pas modifiée, seul le pointeur est ajusté
 */
-char* str_ltrim( char* up, char* down )
+char* str_ltrim( PTR* mem )
 {
 	//gauche
-	while(*up!=0 && up<down)
+	while(*mem->up != 0 && mem->up < mem->down)
 	{
-		switch(*up){
+		switch(*mem->up){
 			case '\n':
 			case '\r':
 			case ' ':
 			case '\t':
 				break;
 			default:
-				return up;
+				if(mem->ptr<mem->up) mem->ptr = mem->up;
+				return mem->up;
 		}
-		up++;
+		mem->up++;
 	}
 	
-	return up;
+	return mem->up;
 }
 
 /**
@@ -80,23 +93,26 @@ char* str_ltrim( char* up, char* down )
 	@return Pointeur sur le dernier caractère "lisible" de la chaine
 	@remarks La chaine n'est pas modifiée, seul le pointeur est ajusté
 */
-char* str_rtrim( char* up, char* down )
+char* str_rtrim( PTR* mem )
 {
 	//droite
-	while(down>up)
+	while(mem->down > mem->ptr)
 	{
-		switch(*(--down)){
+		switch(*(mem->down-1)){
 			case '\n':
 			case '\r':
 			case ' ':
 			case '\t':
+			case '\0':
+				mem->down--;
 				break;
 			default:
-				return down+1;
+				if(mem->ptr>mem->down) mem->ptr = mem->down-1;
+				return mem->down;
 		}
 	}
 	
-	return down;
+	return mem->down;
 }
 
 /*calcule la taille d'un texte
@@ -447,26 +463,35 @@ char* strParse(char* begin,char* end,const char* txt,...)
 #ifdef GTEST
 TEST(str, str_ltrim) {
     char value[] = " \n\r\tHello World";
-    char* ofs = str_ltrim(value,value+15);
-    ASSERT_STREQ("Hello World", ofs) << "Should be equal";
+	//BPTR(ptr,value,sizeof(value));
+	PTR ptr={value,value+sizeof(value),value};
+
+    char* ofs = str_ltrim(&ptr);
+    ASSERT_STREQ("Hello World", ofs) << "str_ltrim";
 }
 
 TEST(str, str_rtrim) {
     char value[] = "Hello World \n\r\t";
-    *str_rtrim(value,value+15) = '\0'; // tronque definitivement
-    ASSERT_STREQ("Hello World", value) << "Should be equal";
+	PTR ptr={value,value+sizeof(value),value};
+
+    *str_rtrim(&ptr) = '\0'; // tronque definitivement
+    ASSERT_STREQ("Hello World", value) << "str_rtrim";
 }
 
 TEST(str, str_trim) {
-	size_t s;
-    char buf[20];
     char value[] = " \n\r\tHello World \n\r\t";
-    char* begin=value;
-	char* end=value+19;
-    str_trim(&begin,&end);
-	s = (size_t)(end-begin);
-	memcpy(buf,begin,s);
-	buf[s]=0;
-    ASSERT_STREQ("Hello World", buf) << "Should be equal";
+	PTR ptr={value,value+sizeof(value),value};
+
+    str_trim(&ptr);
+	*ptr.down = '\0';
+    ASSERT_STREQ("Hello World", ptr.ptr) << "Should be equal";
+}
+
+TEST(str, str_trimz) {
+    char value[] = " \n\r\tHello World \n\r\t";
+	PTR ptr={value,value+sizeof(value),value};
+
+    str_trimz(&ptr);
+    ASSERT_STREQ("Hello World", ptr.up) << "Should be equal";
 }
 #endif

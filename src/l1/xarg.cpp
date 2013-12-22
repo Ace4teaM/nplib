@@ -22,25 +22,8 @@
 #include "xarg.h"
 
 /* Encode un champ dans le format XARG */
-char* xarg_encode_field(char* out,const char* title,const char* msg) {
-	//Les caracteres de controle de debut et de fin de valeur sont interdits
-	for (size_t i=0;i<strlen(title);i++){
-		if(title[i] != XARG_START_OF_TEXT_CODE || title[i] != XARG_END_OF_TEXT_CODE)
-			*out++ = title[i];
-	}
-	*out++ = XARG_START_OF_TEXT_CODE;
-	for (size_t i=0;i<strlen(msg);i++){
-		if(msg[i] != XARG_START_OF_TEXT_CODE || msg[i] != XARG_END_OF_TEXT_CODE)
-			*out++ = msg[i];
-	}
-	*out++ = XARG_END_OF_TEXT_CODE;
-	*out = 0;
-	return out;
-}
-
-/* Encode un champ dans le format XARG */
-char* _xarg_encode_field(char* up, char* down,const char* title,const char* msg) {
-	size_t free_size  = (size_t)(down-up);
+bool xarg_encode_field(PTR* mem,const char* title,const char* msg) {
+	size_t free_size  = (size_t)(mem->down-mem->ptr);
 	size_t total_size = strlen(title) + strlen(msg) + 2 + 1;
 	size_t i;
 	
@@ -52,33 +35,33 @@ char* _xarg_encode_field(char* up, char* down,const char* title,const char* msg)
 	i=0;
 	do{
 		if(title[i] != XARG_START_OF_TEXT_CODE || title[i] != XARG_END_OF_TEXT_CODE)
-			*up++ = title[i];
+			*mem->ptr++ = title[i];
 	}while(title[++i] != '\0');
 
 	// separateur
-	*up++ = XARG_START_OF_TEXT_CODE;
+	*mem->ptr++ = XARG_START_OF_TEXT_CODE;
 
 	// copie le message
 	i=0;
 	do{
 		if(msg[i] != XARG_START_OF_TEXT_CODE || msg[i] != XARG_END_OF_TEXT_CODE)
-			*up++ = msg[i];
+			*mem->ptr++ = msg[i];
 	}while(msg[++i] != '\0');
 
 	// separateur
-	*up++ = XARG_END_OF_TEXT_CODE;
+	*mem->ptr++ = XARG_END_OF_TEXT_CODE;
 
 	//fin de chaine
-	*up = 0;
+	*mem->ptr = 0;
 
-	return up;
+	return true;
 }
 
 /* Encode un champ dans le format XARG */
-const char* xarg_decode_field(const char* in,char* title,char* msg) {
+bool xarg_decode_field(PTR* in,char* title,char* msg) {
 	char* cur = title;
 	char c;
-	while((c = *in++) != '\0'){
+	while((c = *in->ptr++) != '\0'){
 		switch(c){
 			case XARG_START_OF_TEXT_CODE:
 				*cur++ = '\0';
@@ -86,30 +69,28 @@ const char* xarg_decode_field(const char* in,char* title,char* msg) {
 				break;
 			case XARG_END_OF_TEXT_CODE:
 				*cur++ = '\0';
-				return in;
+				return true;
 			default:
 				*cur++ = c;
 				break;
 		}
 	}
-	return in;
+	return false;
 }
 
 
-/* Convertie une chaine au format XARG en tableau associatif */
-int xarg_decode(void* out, int ofs, const char* text) {//v4
-	char* _out=(char*)out;
+/* Convertie une chaine au format XARG en tableau associatif
+int xarg_decode(PTR* out, int ofs, const char* text) {//v4
 	int i=0;
 	int cnt=0;
 	while(*text != '\0'){
-
-		text = xarg_decode_field(text,&_out[i],&_out[i+ofs]);
+		text = xarg_decode_field(text,&out->ptr[i],&out->ptr[i+ofs]);
 		i+=ofs*2;
 		cnt++;
 	}
 	return cnt;
 //    return &_out[i+ofs];
-}
+} */
 
 
 
@@ -120,48 +101,36 @@ int xarg_decode(void* out, int ofs, const char* text) {//v4
 TEST(XARG, xarg_encode_field) {
     char value[200];
     char expected[]={'h','e','l','l','o',XARG_START_OF_TEXT_CODE,'w','o','r','l','d',XARG_END_OF_TEXT_CODE,0};
+	PTR ptr={value,value+sizeof(value),value};
 
-    xarg_encode_field(value,"hello","world");
+    xarg_encode_field(&ptr,"hello","world");
 
-    ASSERT_STREQ(expected, value) << "Should be equal";
+	ASSERT_STREQ(expected, ptr.up) << "simple encoding";
 }
 
 TEST(XARG, xarg_encode_field2) {
     char value[200];
-    char* pvalue = value;
     char text[]={'h','e','l','l','o',XARG_START_OF_TEXT_CODE,'w','o','r','l','d',XARG_END_OF_TEXT_CODE,'f','o','o',XARG_START_OF_TEXT_CODE,'b','a','r',XARG_END_OF_TEXT_CODE,0};
+	PTR ptr={value,value+sizeof(value),value};
 
-    pvalue = xarg_encode_field(pvalue,"hello","world");
-    pvalue = xarg_encode_field(pvalue,"foo","bar");
+    xarg_encode_field(&ptr,"hello","world");
+    xarg_encode_field(&ptr,"foo","bar");
 
-    ASSERT_STREQ(text, value) << "Should be equal";
-}
-
-
-TEST(XARG, _xarg_encode_field) {
-    char value[200];
-    char* pup = value;
-    char* pdown = value+sizeof(value);
-    char text[]={'h','e','l','l','o',XARG_START_OF_TEXT_CODE,'w','o','r','l','d',XARG_END_OF_TEXT_CODE,'f','o','o',XARG_START_OF_TEXT_CODE,'b','a','r',XARG_END_OF_TEXT_CODE,0};
-	
-	memset(value,0,sizeof(value));
-    pup = _xarg_encode_field(pup,pdown,"hello","world");
-    pup = _xarg_encode_field(pup,pdown,"foo","bar");
-
-    ASSERT_STREQ(text,value) << "Should be equal";
+    ASSERT_STREQ(text, ptr.up) << "multiple encoding";
 }
 
 TEST(XARG, xarg_decode_field) {
     char title[20];
     char msg[20];
     char value[]={'h','e','l','l','o',XARG_START_OF_TEXT_CODE,'w','o','r','l','d',XARG_END_OF_TEXT_CODE,0};
+	PTR ptr={value,value+sizeof(value),value};
 
-	xarg_decode_field(value,title,msg);
+	xarg_decode_field(&ptr,title,msg);
 
     ASSERT_STREQ("hello", title) << "Should be equal";
     ASSERT_STREQ("world", msg) << "Should be equal";
 }
-
+/*
 TEST(XARG, xarg_decode) {
     char out[20][20];
     char text[]={'h','e','l','l','o',XARG_START_OF_TEXT_CODE,'w','o','r','l','d',XARG_END_OF_TEXT_CODE,'f','o','o',XARG_START_OF_TEXT_CODE,'b','a','r',XARG_END_OF_TEXT_CODE,0};
@@ -173,6 +142,6 @@ TEST(XARG, xarg_decode) {
     ASSERT_STREQ("world", out[1]) << "Should be equal";
     ASSERT_STREQ("foo", out[2]) << "Should be equal";
     ASSERT_STREQ("bar", out[3]) << "Should be equal";
-}
+}*/
 
 #endif
