@@ -115,6 +115,13 @@ char* str_rtrim( PTR* mem )
 	return mem->down;
 }
 
+int strlen( char* up  ){
+	int size=0;
+	while(*up++!='\0')
+		size++;
+	return size;
+}
+
 /*calcule la taille d'un texte
 char* strLength( char* up, char* down, size_t* psize )
 {

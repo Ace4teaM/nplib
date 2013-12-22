@@ -4,6 +4,7 @@
 #ifndef _NP_L1_STR
 #define _NP_L1_STR
 
+#include "memory.h"
 #include <stdio.h>
 #include <stddef.h>
 #include <stdarg.h>
@@ -17,6 +18,7 @@ char* str_rtrim( PTR* ptr );
 void str_trim( PTR* ptr );
 void str_trimz( PTR* ptr  );
 char* str_trimz( char* up  );
+int strlen( char* up  );
 /*
 char* strLength( char* up, char* down, size_t* psize );
 char* strCopy( char* up, char* down, const char* str );
