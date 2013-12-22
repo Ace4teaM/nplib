@@ -1,8 +1,11 @@
-#ifndef _NP_L1_MEMORY
-#define _NP_L1_MEMORY
+#ifndef _MEMORY
+#define _MEMORY
 
-void* npMakeAlloc(void* up,void* down,unsigned int size);
-void* npMakeCopy(void* up,void* down,void* data,unsigned int size);
-void* npMakeZero(void* up,void* down,unsigned int size);
+typedef struct _PTR{
+	char *up,*down,*ptr;
+}PTR;
+
+char* bread(char* up,char* down,void* _data,unsigned int size);
+char* bwrite(char* up,char* down,const void* _data,unsigned int size);
 
 #endif
