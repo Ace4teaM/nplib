@@ -1,4 +1,4 @@
-/*
+ï»¿/*
     ---------------------------------------------------------------------------------------------------------------------------------------
     (C)2013 Thomas AUGUEY <contact@aceteam.org>
     ---------------------------------------------------------------------------------------------------------------------------------------
@@ -18,8 +18,8 @@
     along with WebFrameWork.  If not, see <http://www.gnu.org/licenses/>.
     ---------------------------------------------------------------------------------------------------------------------------------------
 */
-#ifndef _NP_L1_RESULT
-#define _NP_L1_RESULT
+#ifndef _RESULT_H
+#define _RESULT_H
 
 
 #ifdef ARDUINO
@@ -34,29 +34,29 @@
 extern "C" {
 
 /**
-*  @brief Définit le résultat en cours comme succès
+*  @brief DÃ©finit le rÃ©sultat en cours comme succÃ¨s
 *  @return true
 */
 bool RESULT_OK();
 
 /**
-*  @brief Définit le résultat en cours
-*  @param context Chaine contenant le contexte de l'erreur. Généralement l'une des chaines suivantes ERR_OK, ERR_FAILED, ERR_SYSTEM
-*  @param code Chaine contenant le code de l'erreur. Ce code est spécifique à l'application
-*  @return true si le code est égale à ERR_OK, sinon false
+*  @brief DÃ©finit le rÃ©sultat en cours
+*  @param context Chaine contenant le contexte de l'erreur. GÃ©nÃ©ralement l'une des chaines suivantes ERR_OK, ERR_FAILED, ERR_SYSTEM
+*  @param code Chaine contenant le code de l'erreur. Ce code est spÃ©cifique Ã  l'application
+*  @return true si le code est Ã©gale Ã  ERR_OK, sinon false
 */
 bool RESULT(const char* context, const char* code);
 
 /**
 *  @brief Retourne le code de l'erreur en cours
-*  @remarks Attention get_result_code() ne retourne pas une copie de la chaine mais le pointeur global. Sa valeur est soumise à changement au prochain appel de la fonction RESULT
+*  @remarks Attention get_result_code() ne retourne pas une copie de la chaine mais le pointeur global. Sa valeur est soumise Ã  changement au prochain appel de la fonction RESULT
 *  @return Chaine contenant le code
 */
 const char* get_result_code();
 
 /**
 *  @brief Retourne le contexte de l'erreur en cours
-*  @remarks Attention get_result() ne retourne pas une copie de la chaine mais le pointeur global. Sa valeur est soumise à changement au prochain appel de la fonction RESULT
+*  @remarks Attention get_result() ne retourne pas une copie de la chaine mais le pointeur global. Sa valeur est soumise Ã  changement au prochain appel de la fonction RESULT
 *  @return Chaine contenant le contexte
 */
 const char* get_result();

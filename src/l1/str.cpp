@@ -1,4 +1,4 @@
-/*
+ï»¿/*
     ---------------------------------------------------------------------------------------------------------------------------------------
     (C)2013 Thomas AUGUEY <contact@aceteam.org>
     ---------------------------------------------------------------------------------------------------------------------------------------
@@ -22,10 +22,10 @@
 #include "str.h"
 
 /**
-	@brief Rogne les caractères d'espacements et de saut de ligne (gauche et droite)
-	@param up Pointeur sur le début de la chaine
-	@param down Pointeur sur le début de la fin de chaine
-	@remarks La chaine n'est pas modifiée, seul les pointeurs sont ajustés
+	@brief Rogne les caractÃ¨res d'espacements et de saut de ligne (gauche et droite)
+	@param up Pointeur sur le dÃ©but de la chaine
+	@param down Pointeur sur le dÃ©but de la fin de chaine
+	@remarks La chaine n'est pas modifiÃ©e, seul les pointeurs sont ajustÃ©s
 */
 char* str_trimz( char* up  )
 {
@@ -35,10 +35,10 @@ char* str_trimz( char* up  )
 }
 
 /**
-	@brief Rogne les caractères d'espacements et de saut de ligne (gauche et droite)
-	@param up Pointeur sur le début de la chaine
-	@param down Pointeur sur le début de la fin de chaine
-	@remarks La chaine n'est pas modifiée, seul les pointeurs sont ajustés
+	@brief Rogne les caractÃ¨res d'espacements et de saut de ligne (gauche et droite)
+	@param up Pointeur sur le dÃ©but de la chaine
+	@param down Pointeur sur le dÃ©but de la fin de chaine
+	@remarks La chaine n'est pas modifiÃ©e, seul les pointeurs sont ajustÃ©s
 */
 void str_trimz( PTR* ptr  )
 {
@@ -47,10 +47,10 @@ void str_trimz( PTR* ptr  )
 }
 
 /**
-	@brief Rogne les caractères d'espacements et de saut de ligne (gauche et droite)
-	@param up Pointeur sur le début de la chaine
-	@param down Pointeur sur le début de la fin de chaine
-	@remarks La chaine n'est pas modifiée, seul les pointeurs sont ajustés
+	@brief Rogne les caractÃ¨res d'espacements et de saut de ligne (gauche et droite)
+	@param up Pointeur sur le dÃ©but de la chaine
+	@param down Pointeur sur le dÃ©but de la fin de chaine
+	@remarks La chaine n'est pas modifiÃ©e, seul les pointeurs sont ajustÃ©s
 */
 void str_trim( PTR* ptr )
 {
@@ -59,11 +59,11 @@ void str_trim( PTR* ptr )
 }
 
 /**
-	@brief Rogne les caractères d'espacements et de saut de ligne (gauche)
-	@param up Pointeur sur le début de la chaine
-	@param down Pointeur sur le début de la fin de chaine
-	@return Pointeur sur le premier caractère "lisible" de la chaine
-	@remarks La chaine n'est pas modifiée, seul le pointeur est ajusté
+	@brief Rogne les caractÃ¨res d'espacements et de saut de ligne (gauche)
+	@param up Pointeur sur le dÃ©but de la chaine
+	@param down Pointeur sur le dÃ©but de la fin de chaine
+	@return Pointeur sur le premier caractÃ¨re "lisible" de la chaine
+	@remarks La chaine n'est pas modifiÃ©e, seul le pointeur est ajustÃ©
 */
 char* str_ltrim( PTR* mem )
 {
@@ -87,11 +87,11 @@ char* str_ltrim( PTR* mem )
 }
 
 /**
-	@brief Rogne les caractères d'espacements et de saut de ligne (droite)
-	@param up Pointeur sur le début de la chaine
-	@param down Pointeur sur le début de la fin de chaine
-	@return Pointeur sur le dernier caractère "lisible" de la chaine
-	@remarks La chaine n'est pas modifiée, seul le pointeur est ajusté
+	@brief Rogne les caractÃ¨res d'espacements et de saut de ligne (droite)
+	@param up Pointeur sur le dÃ©but de la chaine
+	@param down Pointeur sur le dÃ©but de la fin de chaine
+	@return Pointeur sur le dernier caractÃ¨re "lisible" de la chaine
+	@remarks La chaine n'est pas modifiÃ©e, seul le pointeur est ajustÃ©
 */
 char* str_rtrim( PTR* mem )
 {
@@ -465,7 +465,7 @@ char* strParse(char* begin,char* end,const char* txt,...)
 */
 
 /*
-  tests réalisés avec la librairie GoogleTest
+  tests rÃ©alisÃ©s avec la librairie GoogleTest
 */
 #ifdef GTEST
 TEST(str, str_ltrim) {

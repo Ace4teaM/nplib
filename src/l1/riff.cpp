@@ -1,31 +1,31 @@
-#include "riff.h"
+ï»¿#include "riff.h"
 
 /**
-	@brief Reads RIFF header and advance the file pointer thereof
-	@param fp File pointer
-	@param header Output header structure
-	@return true
+    @brief Reads RIFF header and advance the file pointer thereof
+    @param fp File pointer
+    @param header Output header structure
+    @return true
 */
 bool riff_read(PTR* mem,RIFF* header){
-	bread(mem,header->id,sizeof(header->id));
-	header->size = btoi(mem);
-	return true;
+    bread(mem,header->id,sizeof(header->id));
+    header->size = btoi(mem);
+    return true;
 }
 
 /**
-	@brief Write RIFF header and advance the file pointer thereof
-	@param fp File pointer
-	@param header Input header structure
-	@return true
+    @brief Write RIFF header and advance the file pointer thereof
+    @param fp File pointer
+    @param header Input header structure
+    @return true
 */
 bool riff_write(PTR* mem,const RIFF* header){
-	bwrite(mem,header->id,sizeof(header->id));
-	itob(mem,header->size);
-	return true;
+    bwrite(mem,header->id,sizeof(header->id));
+    itob(mem,header->size);
+    return true;
 }
 
 /*
-  tests réalisés avec la librairie GoogleTest
+  tests rÃ©alisÃ©s avec la librairie GoogleTest
 */
 #ifdef GTEST
 TEST(RIFF, read_write) {

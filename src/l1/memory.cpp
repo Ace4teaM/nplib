@@ -1,8 +1,8 @@
-#include "memory.h"
+ï»¿#include "memory.h"
 
 
 /**
-	@brief Ecrit (copie) des données
+	@brief Ecrit (copie) des donnÃ©es
 */
 bool bwrite(PTR* mem,const void* _data,unsigned int size)
 {
@@ -20,7 +20,7 @@ bool bwrite(PTR* mem,const void* _data,unsigned int size)
 }
 
 /**
-	@brief Lit (copie) des données
+	@brief Lit (copie) des donnÃ©es
 */
 bool bread(PTR* mem,void* _data,unsigned int size)
 {

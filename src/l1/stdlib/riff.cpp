@@ -1,4 +1,4 @@
-#include "riff.h"
+ï»¿#include "riff.h"
 
 /**
 	@brief Reads RIFF header and advance the file pointer thereof
@@ -25,7 +25,7 @@ bool riff_fwrite(FILE* fp,const RIFF* header){
 }
 
 /*
-  tests réalisés avec la librairie GoogleTest
+  tests rÃ©alisÃ©s avec la librairie GoogleTest
 */
 #ifdef GTEST
 TEST(RIFF, fread_fwrite) {

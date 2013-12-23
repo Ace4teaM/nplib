@@ -1,7 +1,7 @@
-#ifndef _ENDIAN_H
-#define _ENDIAN_H
+#ifndef _STDIO_FENDIAN_H
+#define _STDIO_FENDIAN_H
 
-#include "endian.h"
+#include "../endian.h"
 #include <stdio.h>
 
 /**

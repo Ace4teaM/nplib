@@ -1,4 +1,4 @@
-/*
+ï»¿/*
     ---------------------------------------------------------------------------------------------------------------------------------------
     (C)2013 Thomas AUGUEY <contact@aceteam.org>
     ---------------------------------------------------------------------------------------------------------------------------------------
@@ -18,8 +18,8 @@
     along with WebFrameWork.  If not, see <http://www.gnu.org/licenses/>.
     ---------------------------------------------------------------------------------------------------------------------------------------
 */
-#ifndef _NP_L1_XARG
-#define _NP_L1_XARG
+#ifndef _XARG_H
+#define _XARG_H
 
 #include "memory.h"
 #include <string.h>
@@ -39,9 +39,9 @@ extern "C" {
 /**
  * @brief Encode un champ dans le format XARG
  *
- * @param mem Pointeur sur le tampon mémoire
- * @param title Titre du paramétre (Format identifier recommandé)
- * @param msg Valeur du paramétre
+ * @param mem Pointeur sur le tampon mÃ©moire
+ * @param title Titre du paramÃ©tre (Format identifier recommandÃ©)
+ * @param msg Valeur du paramÃ©tre
  * @return chaine au format XARG
  */
 bool xarg_encode_field(PTR* mem,const char* title,const char* msg);
@@ -49,16 +49,16 @@ bool xarg_encode_field(PTR* mem,const char* title,const char* msg);
 /**
  * @brief Encode un champ dans le format XARG
  *
- * @param mem Pointeur sur le tampon mémoire
- * @param string $title Titre du paramétre (Format identifier recommandé)
- * @param string $title Valeur du paramétre
+ * @param mem Pointeur sur le tampon mÃ©moire
+ * @param string $title Titre du paramÃ©tre (Format identifier recommandÃ©)
+ * @param string $title Valeur du paramÃ©tre
  * @return chaine au format XARG
  */
 bool xarg_decode_field(PTR* mem,char* title,char* msg);
 
 /**
  * @brief Convertie une chaine au format XARG en tableau associatif
- * @param out     Tableau de tableau de type char recupérant les données 
+ * @param out     Tableau de tableau de type char recupÃ©rant les donnÃ©es 
  * @param ofs     Taille d'un mot dans out
  * @param text     Corps du texte XARG
  * @return Nombre d'items lu

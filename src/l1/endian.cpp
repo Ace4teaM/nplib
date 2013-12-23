@@ -1,4 +1,4 @@
-#include "endian.h"
+ï»¿#include "endian.h"
 
 /**
 	@brief Bytes (little endian) to Integer type
@@ -317,7 +317,7 @@ char* ltob(char* dat, long val){
 	return dat;
 }
 /*
-  tests réalisés avec la librairie GoogleTest
+  tests rÃ©alisÃ©s avec la librairie GoogleTest
 */
 #ifdef GTEST
 

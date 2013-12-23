@@ -1,5 +1,5 @@
-#ifndef _NP_L1_TEXTS
-#define _NP_L1_TEXTS
+#ifndef _TEXTS_H
+#define _TEXTS_H
 
 #ifdef WIN32
 #include <io.h>

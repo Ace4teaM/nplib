@@ -1,4 +1,5 @@
 #include "..\endian.h"
+#include "fendian.h"
 
 /**
 	@brief File (little endian) to Short type

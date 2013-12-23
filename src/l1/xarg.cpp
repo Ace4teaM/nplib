@@ -1,4 +1,4 @@
-/*
+ï»¿/*
     ---------------------------------------------------------------------------------------------------------------------------------------
     (C)2013 Thomas AUGUEY <contact@aceteam.org>
     ---------------------------------------------------------------------------------------------------------------------------------------
@@ -95,7 +95,7 @@ int xarg_decode(PTR* out, int ofs, const char* text) {//v4
 
 
 /*
-  tests réalisés avec la librairie GoogleTest
+  tests rÃ©alisÃ©s avec la librairie GoogleTest
 */
 #ifdef GTEST
 TEST(XARG, xarg_encode_field) {

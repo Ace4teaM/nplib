@@ -1,4 +1,4 @@
-#ifndef _ENDIAN_H
+﻿#ifndef _ENDIAN_H
 #define _ENDIAN_H
 
 #include "memory.h"

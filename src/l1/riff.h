@@ -1,4 +1,4 @@
-#ifndef _RIFF_H
+﻿#ifndef _RIFF_H
 #define _RIFF_H
 
 #include "endian.h"

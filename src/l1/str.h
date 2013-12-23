@@ -1,8 +1,8 @@
-/*
+﻿/*
 	ASCII string
 */
-#ifndef _NP_L1_STR
-#define _NP_L1_STR
+#ifndef _STR_H
+#define _STR_H
 
 #include "memory.h"
 #include <stdio.h>

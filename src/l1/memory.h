@@ -1,5 +1,5 @@
-#ifndef _MEMORY
-#define _MEMORY
+﻿#ifndef _MEMORY_H
+#define _MEMORY_H
 
 typedef struct _PTR{
 	char *up,*down,*ptr;

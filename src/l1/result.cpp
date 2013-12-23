@@ -1,4 +1,4 @@
-/*
+ï»¿/*
     ---------------------------------------------------------------------------------------------------------------------------------------
     (C)2013 Thomas AUGUEY <contact@aceteam.org>
     ---------------------------------------------------------------------------------------------------------------------------------------
@@ -36,14 +36,14 @@ const char* SUCCESS = "SUCCESS";
 const char* g_result_context;
 const char* g_result_code;
 
-/* Définit le résultat en cours comme succès */
+/* DÃ©finit le rÃ©sultat en cours comme succÃ¨s */
 bool RESULT_OK(){
 	g_result_context=ERR_OK;
 	g_result_code=SUCCESS;
 	return true;
 }
 
-/* Définit le résultat en cours */
+/* DÃ©finit le rÃ©sultat en cours */
 bool RESULT(const char* context, const char* code){
 	g_result_context=context;
 	g_result_code=code;
@@ -70,7 +70,7 @@ const char* get_result(){
 
 
 /*
-  tests réalisés avec la librairie GoogleTest
+  tests rÃ©alisÃ©s avec la librairie GoogleTest
 */
 #ifdef GTEST
 TEST(RESULT, result) {
