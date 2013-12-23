@@ -16,5 +16,6 @@ typedef struct _RIFF_HEADER{
 
 bool riff_read(PTR* mem,RIFF* header);
 bool riff_write(PTR* mem,const RIFF* header);
+bool riff_write_tag(PTR* mem,const char* tag,unsigned int size);
 
 #endif

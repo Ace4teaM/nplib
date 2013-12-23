@@ -1,7 +1,8 @@
 ﻿#include "riff.h"
 
+
 /**
-    @brief Reads RIFF header and advance the file pointer thereof
+    @brief Reads RIFF header and advance the memory pointer thereof
     @param fp File pointer
     @param header Output header structure
     @return true
@@ -13,7 +14,7 @@ bool riff_read(PTR* mem,RIFF* header){
 }
 
 /**
-    @brief Write RIFF header and advance the file pointer thereof
+    @brief Write RIFF header and advance the memory pointer thereof
     @param fp File pointer
     @param header Input header structure
     @return true
@@ -21,6 +22,18 @@ bool riff_read(PTR* mem,RIFF* header){
 bool riff_write(PTR* mem,const RIFF* header){
     bwrite(mem,header->id,sizeof(header->id));
     itob(mem,header->size);
+    return true;
+}
+
+/**
+    @brief Write RIFF header and advance the memory pointer thereof
+    @param fp File pointer
+    @param header Input header structure
+    @return true
+*/
+bool riff_write_tag(PTR* mem,const char* tag,unsigned int size){
+    bwrite(mem,tag,4);
+    itob(mem,size);
     return true;
 }
 
