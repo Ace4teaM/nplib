@@ -1,4 +1,4 @@
-﻿#include "riff.h"
+﻿#include "friff.h"
 
 /**
 	@brief Reads RIFF header and advance the file pointer thereof
