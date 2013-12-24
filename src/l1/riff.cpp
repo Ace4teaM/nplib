@@ -19,6 +19,18 @@ bool riff_read(PTR* mem,RIFF* header){
     @param header Input header structure
     @return true
 */
+bool riff_read_tag(PTR* mem,char* tag,unsigned int* size){
+    bread(mem,tag,4);
+    *size = btoi(mem);
+    return true;
+}
+
+/**
+    @brief Write RIFF header and advance the memory pointer thereof
+    @param fp File pointer
+    @param header Input header structure
+    @return true
+*/
 bool riff_write(PTR* mem,const RIFF* header){
     bwrite(mem,header->id,sizeof(header->id));
     itob(mem,header->size);
