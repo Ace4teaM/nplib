@@ -1,4 +1,4 @@
-﻿/*
+/*
 	ASCII string
 */
 #ifndef _STR_H

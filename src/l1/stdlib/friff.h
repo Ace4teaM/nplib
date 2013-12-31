@@ -1,4 +1,4 @@
-﻿#ifndef _STDIO_RIFF_H
+#ifndef _STDIO_RIFF_H
 #define _STDIO_RIFF_H
 
 #include "../riff.h"

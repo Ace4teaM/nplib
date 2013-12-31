@@ -1,4 +1,4 @@
-﻿#include "riff.h"
+#include "riff.h"
 
 
 /**

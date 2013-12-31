@@ -1,4 +1,4 @@
-﻿#ifndef _MEMORY_H
+#ifndef _MEMORY_H
 #define _MEMORY_H
 
 typedef struct _PTR{
