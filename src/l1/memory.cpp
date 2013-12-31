@@ -59,7 +59,7 @@ PTR* brewind(PTR* mem){
 PTR* bptr(PTR* mem,void* dat,int size){
 	mem->up = (char*)dat;
 	mem->down = mem->up+size;
-	mem->up = mem->up;
+    mem->ptr = mem->up;
 	return mem;
 }
 
