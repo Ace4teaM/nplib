@@ -10,7 +10,7 @@ short ftos(FILE* fp){
 	short val=0;
 	int size=sizeof(short);
 #ifdef IS_BIG_ENDIAN
-	char* iptr=((char*)&val)+=sizeof(short);
+	char* iptr=((char*)&val)+sizeof(short);
 	while(size--)
 	{
 		*--iptr = (char)fgetc( fp );
@@ -34,7 +34,7 @@ int ftoi(FILE* fp){
 	int val=0;
 	int size=sizeof(int);
 #ifdef IS_BIG_ENDIAN
-	char* iptr=((char*)&val)+=sizeof(int);
+	char* iptr=((char*)&val)+sizeof(int);
 	while(size--)
 	{
 		*--iptr = (char)fgetc( fp );
@@ -58,7 +58,7 @@ long ftol(FILE* fp){
 	long val=0;
 	int size=sizeof(long);
 #ifdef IS_BIG_ENDIAN
-	char* iptr=((char*)&val)+=sizeof(long);
+	char* iptr=((char*)&val)+sizeof(long);
 	while(size--)
 	{
 		*--iptr = (char)fgetc( fp );
@@ -82,7 +82,7 @@ long ftol(FILE* fp){
 FILE* stof(FILE* fp, short val){
 	int size=sizeof(short);
 #ifdef IS_BIG_ENDIAN
-	char* iptr=((char*)&val)+=sizeof(short);
+	char* iptr=((char*)&val)+sizeof(short);
 	while(size--)
 	{
 		fputc((int)*--iptr,fp);
@@ -106,7 +106,7 @@ FILE* stof(FILE* fp, short val){
 FILE* itof(FILE* fp, int val){
 	int size=sizeof(int);
 #ifdef IS_BIG_ENDIAN
-	char* iptr=((char*)&val)+=sizeof(int);
+	char* iptr=((char*)&val)+sizeof(int);
 	while(size--)
 	{
 		fputc((int)*--iptr,fp);
@@ -130,7 +130,7 @@ FILE* itof(FILE* fp, int val){
 FILE* ltof(FILE* fp, long val){
 	int size=sizeof(long);
 #ifdef IS_BIG_ENDIAN
-	char* iptr=((char*)&val)+=sizeof(long);
+	char* iptr=((char*)&val)+sizeof(long);
 	while(size--)
 	{
 		fputc((int)*--iptr,fp);
